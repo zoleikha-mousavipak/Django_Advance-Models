@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Index</title>
+</head>
+<body>
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">IBANs</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+{% for item in myibans %}
+    <tr>
+      <th scope="row">{{ item.id }}</th>
+      <td>{% if request.user.is_superuser %}"{{ item.iban }}"{% else %}"---{{ item.iban|slice:"-5:" }}"{% endif %}</td>
+    </tr>
+{%  endfor %}
+
+     </tbody>
+</table>
+
+</body>
+</html>
